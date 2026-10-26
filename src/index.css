@@ -1,0 +1,166 @@
+/* =========================================================================
+   Friends Church theme — logo blue, white and gold
+   Gold is used for accents, rules and on-blue text; body text on white stays
+   navy/ink so it keeps WCAG AA contrast (gold-on-white does not).
+   ========================================================================= */
+:root {
+  /* Brand blue sampled from the church logo: #1E4167 */
+  --brand: #1e4167;
+  --navy-950: #0d2239;
+  --navy-900: #1e4167;
+  --blue-800: #19385a;
+  --blue-700: #2a5a8c;
+  --blue-600: #346aa3;
+  --blue-100: #dce6f2;
+  --blue-50: #eef3f9;
+
+  --gold-600: #8a6a10;   /* gold text on white (AA) */
+  --gold-500: #c9a227;   /* accents, borders, on-navy text */
+  --gold-300: #e6c96b;
+  --gold-100: #f8f0d6;
+
+  --white: #ffffff;
+  --paper: #f7f9fc;
+  --ink: #16202f;
+  --muted: #566176;
+  --border: #dce3ee;
+  --danger: #b3261e;
+  --danger-bg: #fdecea;
+  --success: #1e7a46;
+  --success-bg: #e7f5ec;
+
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Source Sans 3', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgb(30 65 103 / 0.06), 0 1px 3px rgb(30 65 103 / 0.08);
+  --shadow: 0 8px 24px -8px rgb(30 65 103 / 0.2), 0 2px 6px rgb(30 65 103 / 0.06);
+  --max: 1160px;
+  --gutter: clamp(16px, 4vw, 32px);
+
+  color-scheme: light;
+  font: 17px/1.6 var(--font-sans);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; min-height: 100svh; background: var(--paper); }
+#root { min-height: 100svh; display: flex; flex-direction: column; }
+img, svg, video { max-width: 100%; display: block; }
+
+h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--navy-900); line-height: 1.2; margin: 0 0 .5em; font-weight: 600; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0 0 1em; text-wrap: pretty; }
+a { color: var(--blue-700); text-underline-offset: 3px; }
+a:hover { color: var(--blue-600); }
+
+:focus-visible { outline: 3px solid var(--gold-500); outline-offset: 2px; border-radius: 4px; }
+
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 16px;
+  background: var(--gold-500); color: var(--navy-950); font-weight: 700; border-radius: var(--radius); text-decoration: none;
+}
+.skip-link:focus { top: 12px; }
+
+.container { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
+main { flex: 1; }
+.section { padding-block: clamp(40px, 7vw, 80px); }
+.section--white { background: var(--white); }
+.section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.section-head h2 { margin: 0; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-600);
+}
+.eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--gold-500); }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 62ch; }
+.muted { color: var(--muted); }
+
+/* ---------------------------------------------------------------- Buttons */
+.btn {
+  --bg: var(--blue-700); --fg: var(--white); --bd: var(--blue-700);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 10px 20px; border-radius: 999px; border: 2px solid var(--bd);
+  background: var(--bg); color: var(--fg); font: 600 1rem var(--font-sans);
+  text-decoration: none; cursor: pointer; white-space: nowrap; transition: background .2s, border-color .2s, color .2s, transform .1s;
+}
+.btn:hover { --bg: var(--blue-800); --bd: var(--blue-800); color: var(--fg); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn--gold { --bg: var(--gold-500); --fg: var(--navy-950); --bd: var(--gold-500); }
+.btn--gold:hover { --bg: var(--gold-300); --bd: var(--gold-300); }
+.btn--outline { --bg: transparent; --fg: var(--blue-700); --bd: var(--blue-700); }
+.btn--outline:hover { --bg: var(--blue-50); --fg: var(--blue-800); --bd: var(--blue-800); }
+.btn--ghost-light { --bg: transparent; --fg: var(--white); --bd: rgb(255 255 255 / .55); }
+.btn--ghost-light:hover { --bg: rgb(255 255 255 / .1); --bd: var(--white); }
+.btn--danger { --bg: transparent; --fg: var(--danger); --bd: var(--danger); }
+.btn--danger:hover { --bg: var(--danger-bg); --fg: var(--danger); --bd: var(--danger); }
+.btn--sm { min-height: 36px; padding: 6px 14px; font-size: .9rem; }
+
+/* ------------------------------------------------------------------ Cards */
+.card {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: clamp(18px, 3vw, 28px); box-shadow: var(--shadow-sm);
+}
+.card--gold { border-top: 4px solid var(--gold-500); }
+.grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .78rem; font-weight: 700;
+  letter-spacing: .02em; background: var(--blue-50); color: var(--blue-800); border: 1px solid var(--blue-100);
+}
+.badge--gold { background: var(--gold-100); color: var(--gold-600); border-color: var(--gold-300); }
+.badge--live { background: var(--danger); color: var(--white); border-color: var(--danger); }
+.badge--draft { background: #f1f1f1; color: #555; border-color: #ddd; }
+
+/* ------------------------------------------------------------------ Forms */
+.form { display: grid; gap: 18px; }
+.form-row { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.field { display: grid; gap: 6px; align-content: start; }
+.field label { font-weight: 600; color: var(--navy-900); }
+.field .hint { font-size: .88rem; color: var(--muted); }
+.field .error-msg { display: none; font-size: .88rem; color: var(--danger); }
+.check { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--navy-900); }
+.check input { flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--blue-700); }
+
+input:not([type='checkbox'], [type='radio']), select, textarea {
+  width: 100%; min-height: 44px; padding: 10px 14px; font: inherit; color: var(--ink);
+  background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius);
+  transition: border-color .15s, box-shadow .15s;
+}
+textarea { min-height: 140px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--blue-600); box-shadow: 0 0 0 3px rgb(47 99 176 / .18); }
+/* Only flag problems after the user has finished with a field */
+input:user-invalid, select:user-invalid, textarea:user-invalid { border-color: var(--danger); background: var(--danger-bg); }
+.field:has(:user-invalid) .error-msg { display: block; }
+.field:has(:user-invalid) label { color: var(--danger); }
+
+.alert { padding: 12px 16px; border-radius: var(--radius); border: 1px solid; font-weight: 500; }
+.alert--error { background: var(--danger-bg); border-color: #f3c2bd; color: var(--danger); }
+.alert--success { background: var(--success-bg); border-color: #b9e0c7; color: var(--success); }
+.alert--warning { background: var(--gold-100); border-color: var(--gold-300); color: var(--gold-600); }
+.alert--info { background: var(--blue-50); border-color: var(--blue-100); color: var(--blue-800); }
+
+/* ------------------------------------------------------------- States */
+.state { text-align: center; padding: 48px 16px; color: var(--muted); }
+.spinner {
+  width: 32px; height: 32px; margin: 0 auto 12px; border-radius: 50%;
+  border: 3px solid var(--blue-100); border-top-color: var(--gold-500); animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.skeleton { background: linear-gradient(90deg, var(--blue-50), #f6f9fd, var(--blue-50)); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: var(--radius); }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
