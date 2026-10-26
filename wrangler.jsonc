@@ -1,0 +1,20 @@
+// Cloudflare Worker that serves the built site (static assets) on the platform's domain AND on every church
+// subdomain. Cloudflare Pages can't take a wildcard hostname; a Worker route can.
+//
+// Before the first deploy replace `yourdomain.com` (twice) with your real domain. The domain's DNS must be on
+// Cloudflare, with proxied records for the apex and for `*` (see docs/DEPLOYMENT.md in the backend repo).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "friends-portal",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "assets": {
+    "directory": "./dist",
+    // Unknown paths (/c/<church>, /account, a church subdomain's /worship …) get index.html; the React router takes over.
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    { "pattern": "yourdomain.com/*", "zone_name": "yourdomain.com" },
+    { "pattern": "*.yourdomain.com/*", "zone_name": "yourdomain.com" }
+  ]
+}
