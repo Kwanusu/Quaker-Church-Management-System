@@ -1,0 +1,2 @@
+# Single-page app: every path is served by index.html so deep links (/c/<church>, /account, ...) and refreshes work.
+/*    /index.html   200
