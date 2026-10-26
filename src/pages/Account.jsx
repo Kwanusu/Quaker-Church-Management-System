@@ -66,7 +66,7 @@ function AvatarEditor() {
 
 function ProfileForm() {
   const { user, setUser } = useAuth()
-  const [form, setForm] = useState({ username: user.username, first_name: user.first_name, last_name: user.last_name, email: user.email, phone: user.phone })
+  const [form, setForm] = useState({ username: user.username, first_name: user.first_name, last_name: user.last_name, phone: user.phone })
   const [flash, setFlash] = useState(null)
   const [busy, setBusy] = useState(false)
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
@@ -76,10 +76,9 @@ function ProfileForm() {
     setBusy(true)
     setFlash(null)
     try {
-      const emailChanged = form.email.trim().toLowerCase() !== user.email.toLowerCase()
       const me = await api('/api/v1/auth/me/', { method: 'PATCH', body: form })
       setUser(me)
-      setFlash({ kind: 'success', text: emailChanged ? `Saved. We sent a confirmation link to ${me.email}.` : 'Saved.' })
+      setFlash({ kind: 'success', text: 'Saved.' })
     } catch (err) {
       setFlash({ kind: 'error', text: flat(err.data) || err.message })
     } finally {
@@ -115,9 +114,8 @@ function ProfileForm() {
           </div>
           <div className="field form-grid__wide">
             <label htmlFor="a-email">Email</label>
-            <input id="a-email" type="email" value={form.email} onChange={set('email')} required autoComplete="email" />
-            <span className="hint">Changing it means confirming the new address.</span>
-            <span className="error-msg">Please enter a valid email address.</span>
+            <input id="a-email" type="email" value={user.email} readOnly aria-readonly="true" autoComplete="email" />
+            <span className="hint">Your email identifies your account, so it can’t be changed here.</span>
           </div>
         </div>
         {user.google_linked && <p className="muted account__meta"><span className="badge">Google sign-in linked</span></p>}

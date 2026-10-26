@@ -630,3 +630,6 @@ form[aria-disabled='true'] { opacity: .6; }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .modal, .modal::backdrop { animation: none; } }
 @media (max-width: 480px) { .modal__actions { flex-direction: column-reverse; } .modal__actions .btn { width: 100%; } }
+
+/* Read-only inputs (e.g. the account email) look fixed but stay readable and selectable */
+input[readonly] { background: var(--paper); color: var(--muted); cursor: default; }
